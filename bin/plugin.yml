@@ -1,0 +1,36 @@
+main: me.bartjazdz.AdvSurvival.Main
+name: AdvSurvival
+version: 1.0
+description: Advanced Survival Plugin
+author: Bartosz Jazdzyk
+commands:
+   spawn:
+      description: teleport player to spawn location
+      usage: /<command>
+      permission: AdvSurvival.spawn
+      permission-message: You have not permission to use this command!!!
+   setspawn:
+      description: set spawn location
+      usage: /<command>
+      permission: AdvSurvival.setspawn
+      permission-message: You have not permission to use this command!!!
+   sethome:
+      description: set home location
+      usage: /<command>
+      permission: AdvSurvival.homes
+      permission-message: You have not permission to use this command!!!
+   home:
+      description: teleport to home location
+      usage: /<command>
+      permission: AdvSurvival.homes
+      permission-message: You have not permission to use this command!!!
+permissions:
+   AdvSurvival.setspawn: 
+      description: Allow to set spawn position
+      default: op
+   AdvSurvival.spawn:
+      description: Allow to use spawn command
+      default: true
+   AdvSurvival.homes:
+      description: Allow to use home and sethome commands
+      default: true
