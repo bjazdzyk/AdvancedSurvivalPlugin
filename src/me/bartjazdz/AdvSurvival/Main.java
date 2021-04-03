@@ -5,7 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.bartjazdz.AdvSurvival.commands.HomeCommand;
 import me.bartjazdz.AdvSurvival.commands.SpawnCommand;
+import me.bartjazdz.AdvSurvival.commands.SpawnProtectCommand;
 import me.bartjazdz.AdvSurvival.events.SpawnEvents;
+import me.bartjazdz.AdvSurvival.events.SpawnProtectEvents;
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin{
@@ -19,6 +21,10 @@ public class Main extends JavaPlugin{
 		
 		this.getCommand("home").setExecutor(new HomeCommand());
 		this.getCommand("sethome").setExecutor(new HomeCommand());
+		
+		this.getCommand("setcorner1").setExecutor(new SpawnProtectCommand());
+		this.getCommand("setcorner2").setExecutor(new SpawnProtectCommand());
+		getServer().getPluginManager().registerEvents(new SpawnProtectEvents(), this);
 		
 		loadConfig();
 	}

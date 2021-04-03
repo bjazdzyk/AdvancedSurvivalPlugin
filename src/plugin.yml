@@ -24,6 +24,16 @@ commands:
       usage: /<command>
       permission: AdvSurvival.homes
       permission-message: You have not permission to use this command!!!
+   setcorner1:
+      description: set first corner of spawn area
+      usage: /<command>
+      permission: AdvSurvival.corners
+      permission-message: You have not permission to use this command!!!
+   setcorner2:
+      description: set second corner of spawn area
+      usage: /<command>
+      permission: AdvSurvival.corners
+      permission-message: You have not permission to use this command!!!
 permissions:
    AdvSurvival.setspawn: 
       description: Allow to set spawn position
@@ -34,3 +44,6 @@ permissions:
    AdvSurvival.homes:
       description: Allow to use home and sethome commands
       default: true
+   AdvSurvival.corners:
+      description: Allow to set area of spawn protection
+      default: op

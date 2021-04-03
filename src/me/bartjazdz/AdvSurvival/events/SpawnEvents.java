@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -28,7 +29,9 @@ public class SpawnEvents implements Listener{
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		if(!player.hasPlayedBefore()) {
-			event.setJoinMessage(ChatColor.GOLD + player.getName() + ChatColor.RESET + " is new on this server!");
+			plugin.getConfig().set("spawninfo.playersonspawn." + player.getName(), true);
+			plugin.saveConfig();
+			event.setJoinMessage(ChatColor.GOLD + player.getName() + ChatColor.GREEN + " is new on this server!");
 			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				@Override
 				public void run() {
@@ -40,7 +43,12 @@ public class SpawnEvents implements Listener{
 				}
 			}, 21);
 		}else {
-			event.setJoinMessage(ChatColor.GOLD + player.getName() + ChatColor.RESET + " joined the game!");
+			event.setJoinMessage(ChatColor.GOLD + player.getName() + ChatColor.GREEN + " joined the game!");
 		}
+	}
+	@EventHandler
+	public void onPlayerLeave(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		event.setQuitMessage(ChatColor.GOLD + player.getName() + ChatColor.RED + " left the game!");
 	}
 }

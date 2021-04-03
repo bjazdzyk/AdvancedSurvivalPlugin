@@ -19,6 +19,7 @@ public class HomeCommand implements CommandExecutor{
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				plugin.getConfig().set("homeinfo." + player.getName(), player.getLocation());
+				plugin.saveConfig();
 				player.sendMessage(ChatColor.GREEN + "Home set!");
 				return true;
 			}else {
