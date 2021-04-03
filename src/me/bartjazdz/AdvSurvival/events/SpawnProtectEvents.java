@@ -1,8 +1,10 @@
 package me.bartjazdz.AdvSurvival.events;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -84,6 +86,17 @@ public class SpawnProtectEvents implements Listener{
 					plugin.saveConfig();
 					return;
 				}
+			}
+		}
+	}
+	@EventHandler
+	public void onDamage(EntityDamageEvent event) {
+		Entity entity = event.getEntity();
+		if(entity instanceof Player) {
+			Player player = (Player) entity;
+			if(plugin.getConfig().getBoolean("spawninfo.playersonspawn." + player.getName())) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.GREEN + "You can't take any damage on spawn!");
 			}
 		}
 	}
