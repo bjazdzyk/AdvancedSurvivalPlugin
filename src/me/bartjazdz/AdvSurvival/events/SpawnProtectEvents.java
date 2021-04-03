@@ -1,9 +1,12 @@
 package me.bartjazdz.AdvSurvival.events;
 
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
@@ -100,4 +103,97 @@ public class SpawnProtectEvents implements Listener{
 			}
 		}
 	}
+	@EventHandler
+	public void onBlockBreak(BlockBreakEvent event) {
+		Block block = event.getBlock();
+		Player player = event.getPlayer();
+		
+		if(player.isOp()) {
+			return;
+		}
+		
+		int bx = block.getX();
+		int bz = block.getZ();
+		
+		int x1 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos1.x");
+		int z1 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos1.z");
+		int x2 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos2.x");
+		int z2 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos2.z");
+		
+		if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 1) {
+			if(bx>=x1 && bx<=x2 && bz>=z1 && bz<=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't break blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 2) {
+			if(bx>=x1 && bx<=x2 && bz<=z1 && bz>=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't break blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 3) {
+			if(bx<=x1 && bx>=x2 && bz<=z1 && bz>=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't break blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 4) {
+			if(bx<=x1 && bx>=x2 && bz>=z1 && bz<=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't break blocks on spawn!!!");
+				return;
+			}
+		}
+	}
+	@EventHandler
+	public void onBlockPlace(BlockPlaceEvent event) {
+		Block block = event.getBlock();
+		Player player = event.getPlayer();
+		
+		if(player.isOp()) {
+			return;
+		}
+		
+		int bx = block.getX();
+		int bz = block.getZ();
+		
+		int x1 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos1.x");
+		int z1 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos1.z");
+		int x2 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos2.x");
+		int z2 = plugin.getConfig().getInt("spawninfo.spawnprotect.pos2.z");
+		
+		if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 1) {
+			if(bx>=x1 && bx<=x2 && bz>=z1 && bz<=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't place blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 2) {
+			if(bx>=x1 && bx<=x2 && bz<=z1 && bz>=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't place blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 3) {
+			if(bx<=x1 && bx>=x2 && bz<=z1 && bz>=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't place blocks on spawn!!!");
+				return;
+			}
+		}else if(plugin.getConfig().getInt("spawninfo.spawnprotect.type") == 4) {
+			if(bx<=x1 && bx>=x2 && bz>=z1 && bz<=z2) {
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.RED + "You can't place blocks on spawn!!!");
+				return;
+			}
+		}
+	}
 }
+
+
+
+
+
+
+
