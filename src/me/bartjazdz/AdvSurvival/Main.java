@@ -3,6 +3,7 @@ package me.bartjazdz.AdvSurvival;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.bartjazdz.AdvSurvival.commands.HelpCommand;
 import me.bartjazdz.AdvSurvival.commands.HomeCommand;
 import me.bartjazdz.AdvSurvival.commands.SpawnCommand;
 import me.bartjazdz.AdvSurvival.commands.SpawnProtectCommand;
@@ -25,6 +26,8 @@ public class Main extends JavaPlugin{
 		this.getCommand("setcorner1").setExecutor(new SpawnProtectCommand());
 		this.getCommand("setcorner2").setExecutor(new SpawnProtectCommand());
 		getServer().getPluginManager().registerEvents(new SpawnProtectEvents(), this);
+		
+		this.getCommand("help").setExecutor(new HelpCommand());
 		
 		loadConfig();
 	}

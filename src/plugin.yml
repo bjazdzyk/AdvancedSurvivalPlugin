@@ -4,6 +4,11 @@ version: 1.0
 description: Advanced Survival Plugin
 author: Bartosz Jazdzyk
 commands:
+   help:
+      description: show avaiable commands
+      usage: /help
+      permission: AdvSurvival.help
+      permission-message: You have not permission to use this command!!!
    spawn:
       description: teleport player to spawn location
       usage: /<command>
@@ -35,6 +40,9 @@ commands:
       permission: AdvSurvival.corners
       permission-message: You have not permission to use this command!!!
 permissions:
+   AdvSurvival.help:
+      description: Allow to use command help
+      default: true
    AdvSurvival.setspawn: 
       description: Allow to set spawn position
       default: op
