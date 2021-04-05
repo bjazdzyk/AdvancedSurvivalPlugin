@@ -4,6 +4,16 @@ version: 1.0
 description: Advanced Survival Plugin
 author: Bartosz Jazdzyk
 commands:
+   register:
+      description: register to server
+      usage: /<command>
+      permission: AdvSurvival.Login
+      permission-message: You have not permission to use this command!!!
+   login:
+      description: login to server
+      usage: /<command>
+      permission: AdvSurvival.Login
+      permission-message: You have not permission to use this command!!!
    help:
       description: show avaiable commands
       usage: /help
@@ -40,6 +50,9 @@ commands:
       permission: AdvSurvival.corners
       permission-message: You have not permission to use this command!!!
 permissions:
+   AdvSurvival.Login:
+      description: Allow to register and login to server
+      default: true
    AdvSurvival.help:
       description: Allow to use command help
       default: true
