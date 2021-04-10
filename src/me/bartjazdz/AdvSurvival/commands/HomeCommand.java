@@ -18,6 +18,9 @@ public class HomeCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("sethome")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
 				plugin.getConfig().set("homeinfo." + player.getName(), player.getLocation());
 				plugin.saveConfig();
 				player.sendMessage(ChatColor.GREEN + "Home set!");
@@ -30,6 +33,9 @@ public class HomeCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("home")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
 				if(plugin.getConfig().getLocation("homeinfo." + player.getName()) == null) {
 					player.sendMessage(ChatColor.RED + "Home not found!!!");
 					return true;

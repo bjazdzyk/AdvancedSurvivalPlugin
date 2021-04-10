@@ -19,6 +19,10 @@ public class SpawnProtectCommand implements CommandExecutor{
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
+				
 				plugin.getConfig().set("spawninfo.spawnprotect.pos1.x", player.getLocation().getBlockX());
 				plugin.getConfig().set("spawninfo.spawnprotect.pos1.z", player.getLocation().getBlockZ());
 				plugin.saveConfig();
@@ -60,6 +64,10 @@ public class SpawnProtectCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("setcorner2")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
+				
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
 				
 				plugin.getConfig().set("spawninfo.spawnprotect.pos2.x", player.getLocation().getBlockX());
 				plugin.getConfig().set("spawninfo.spawnprotect.pos2.z", player.getLocation().getBlockZ());

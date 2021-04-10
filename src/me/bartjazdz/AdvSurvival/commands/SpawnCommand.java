@@ -18,6 +18,9 @@ public class SpawnCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("setspawn")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
 				plugin.getConfig().set("spawninfo.location", player.getLocation());
 				plugin.getConfig().set("spawninfo.isSet", true);
 				plugin.saveConfig();
@@ -32,6 +35,9 @@ public class SpawnCommand implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("spawn")) {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+					return true;
+				}
 				if(plugin.getConfig().getBoolean("spawninfo.isSet")) {
 					player.teleport(plugin.getConfig().getLocation("spawninfo.location"));
 					player.sendMessage(ChatColor.GOLD + "Teleported to spawn");

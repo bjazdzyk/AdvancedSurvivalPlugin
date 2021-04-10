@@ -3,6 +3,9 @@ package me.bartjazdz.AdvSurvival.events;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -11,6 +14,7 @@ import org.bukkit.plugin.Plugin;
 import me.bartjazdz.AdvSurvival.Main;
 import net.md_5.bungee.api.ChatColor;
 
+@SuppressWarnings("deprecation")
 public class LoginEvents implements Listener{
 	
 	private Plugin plugin = Main.getPlugin(Main.class);
@@ -45,5 +49,29 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		plugin.getConfig().set("logininfo.activePlayers." + player.getName(), false);
 		plugin.saveConfig();
+	}
+	@EventHandler
+	public void onChat(PlayerChatEvent event) {
+		Player player = event.getPlayer();
+		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+			event.setCancelled(true);
+			return;
+		}
+	}
+	@EventHandler
+	public void onBuild(BlockPlaceEvent event) {
+		Player player = event.getPlayer();
+		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+			event.setCancelled(true);
+			return;
+		}
+	}
+	@EventHandler
+	public void onBreak(BlockBreakEvent event) {
+		Player player = event.getPlayer();
+		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
+			event.setCancelled(true);
+			return;
+		}
 	}
 }
