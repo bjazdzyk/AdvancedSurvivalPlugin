@@ -24,9 +24,11 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		if(plugin.getConfig().getBoolean("logininfo.loggedPlayers." + player.getName()) != true) {
 			player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
+			player.sendTitle("Hello, " + player.getName(), ChatColor.GOLD + "Register using command " + ChatColor.BOLD + "/register <password> <password>", 10, 300, 20);
 			return;
 		}else {
 			player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
+			player.sendTitle("Hello again, " + player.getName(), ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>", 10, 300, 20);
 			return;
 		}
 	}
@@ -36,10 +38,8 @@ public class LoginEvents implements Listener{
 		if(plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName()) != true){
 			event.setCancelled(true);
 			if(plugin.getConfig().getString("logininfo.loggedPlayers") == null) {
-				player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
 				return;
 			}else {
-				player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
 				return;
 			}
 		}
@@ -55,7 +55,13 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
 			event.setCancelled(true);
-			return;
+			if(plugin.getConfig().getString("logininfo.loggedPlayers") == null) {
+				player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
+				return;
+			}else {
+				player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
+				return;
+			}
 		}
 	}
 	@EventHandler
@@ -63,7 +69,13 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
 			event.setCancelled(true);
-			return;
+			if(plugin.getConfig().getString("logininfo.loggedPlayers") == null) {
+				player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
+				return;
+			}else {
+				player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
+				return;
+			}
 		}
 	}
 	@EventHandler
@@ -71,7 +83,13 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName())) {
 			event.setCancelled(true);
-			return;
+			if(plugin.getConfig().getString("logininfo.loggedPlayers") == null) {
+				player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
+				return;
+			}else {
+				player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
+				return;
+			}
 		}
 	}
 }

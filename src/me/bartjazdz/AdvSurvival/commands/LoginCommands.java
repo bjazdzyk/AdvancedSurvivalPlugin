@@ -28,11 +28,12 @@ public class LoginCommands implements CommandExecutor{
 				}
 				if(args.length > 1) {
 					if(args[0].equals(args[1])) {
-						player.sendMessage(ChatColor.GREEN + "Succesfully registered!");
 						plugin.getConfig().set("logininfo.loggedPlayers." + player.getName(), true);
 						plugin.getConfig().set("logininfo.activePlayers." + player.getName(), true);
 						plugin.getConfig().set("logininfo.passwords." + player.getName(), args[0]);
 						plugin.saveConfig();
+						player.sendMessage(ChatColor.GREEN + "Succesfully registered!");
+						player.sendTitle(ChatColor.GREEN + "Succesfully registered!", "Enjoy the server!", 1, 100, 10);
 						return true;
 					}
 				}
@@ -59,6 +60,7 @@ public class LoginCommands implements CommandExecutor{
 						plugin.getConfig().set("logininfo.activePlayers." + player.getName(), true);
 						plugin.saveConfig();
 						player.sendMessage(ChatColor.GREEN + "Succesfully logged in!");
+						player.sendTitle(ChatColor.GREEN + "Succesfully logged in!", "Enjoy the server!", 1, 100, 10);
 						return true;
 					}else {
 						player.kickPlayer(ChatColor.RED + "INVALID PASSWORD!!!");
