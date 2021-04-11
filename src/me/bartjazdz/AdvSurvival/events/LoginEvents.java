@@ -24,13 +24,23 @@ public class LoginEvents implements Listener{
 		Player player = event.getPlayer();
 		if(plugin.getConfig().getBoolean("logininfo.loggedPlayers." + player.getName()) != true) {
 			player.sendMessage(ChatColor.GOLD + "Please register using command " + ChatColor.BOLD + "/register <password> <password>");
-			player.sendTitle("Hello, " + player.getName(), ChatColor.GOLD + "Register using command " + ChatColor.BOLD + "/register <password> <password>", 10, 300, 20);
-			return;
+			player.sendTitle("Hello, " + player.getName(), ChatColor.GOLD + "Register using command " + ChatColor.BOLD + "/register <password> <password>", 10, 600, 20);
 		}else {
 			player.sendMessage(ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>");
-			player.sendTitle("Hello again, " + player.getName(), ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>", 10, 300, 20);
-			return;
+			player.sendTitle("Hello again, " + player.getName(), ChatColor.GOLD + "Please log in using command " + ChatColor.BOLD + "/login <password>", 10, 600, 20);
 		}
+		
+		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+
+			@Override
+			public void run() {
+				if(!plugin.getConfig().getBoolean("logininfo.activePlayers." + player.getName()) && player !=null) {
+					player.kickPlayer(ChatColor.RED + "Time for login is out!");
+				}
+			}
+			
+		}, 600);
+		
 	}
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
